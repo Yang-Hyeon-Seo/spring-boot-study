@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="
+		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/util https://www.springframework.org/schema/util/spring-util.xsd">
+
+    <!-- bean definitions here -->
+    <bean id="dripCoffeeMachine" class="com.example.demo.DripCoffeeMachine"/>
+    <bean id="espressoMachine" class="com.example.demo.EspressoMachine"/>
+    <bean id="coffeeMaker" class="com.example.demo.CoffeeMaker" init-method="makeCoffee">
+        <!-- init-method를 통해 객체 생성 직후 실행할 메서드 지정 -->
+        <property name="coffeeMachine" ref="espressoMachine"/>
+        <!-- coffeeMaker 프로퍼티에 espressoMachine 객체 주입 → 의존성 주입 -->
+    </bean>
+</beans>
