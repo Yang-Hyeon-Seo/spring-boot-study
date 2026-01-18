@@ -1,8 +1,16 @@
 package com.example.demo;
 
+import jakarta.annotation.PostConstruct;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
+
+@Component
 public class CoffeeMaker {
     //    private EspressoMachine espressoMachine;
 //    private DripCoffeeMachine dripCoffeeMachine;
+    @Autowired
+    @Qualifier("dripCoffeeMachine")
     private CoffeeMachine coffeeMachine; // 인터페이스
 
 //    public CoffeeMaker() {
@@ -13,10 +21,13 @@ public class CoffeeMaker {
         // CoffeeMaker 인스턴스가 생길 때 espresoMachine이 생성되도록 함
 //    }
 
+/*
     public void setCoffeeMachine(CoffeeMachine coffeemachine) {
         this.coffeeMachine = coffeemachine;
     }
+*/
 
+    @PostConstruct
     public void makeCoffee() {
 //        System.out.println(espressoMachine.brew());
         System.out.println(coffeeMachine.brew());
